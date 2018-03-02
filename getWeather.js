@@ -25,7 +25,7 @@ function showLocation(position) {
     long = position.coords.longitude;
     console.log(lat);
     console.log(long);
-    x.innerHTML += "<br>Latitude: " + position.coords.latitude +
+    x.innerHTML = "Your location:<br>Latitude: " + position.coords.latitude +
         "<br>Longitude: " + position.coords.longitude;
     getWeather();
     $("#change-tempF").attr("disabled", false);
@@ -39,8 +39,8 @@ function getWeather() {
     $.getJSON(weatherLink, function (json) {
         currentWeather = json.weather[0].main;
         currentTemp = Math.round(json.main.temp);
-        weatherData.innerHTML += currentWeather + "<br>";
-        temperatureData.innerHTML += currentTemp + "&degC";
+        weatherData.innerHTML = "Current weather: " + currentWeather + "<br>";
+        temperatureData.innerHTML = "Current temperature: " +  currentTemp + "&degC";
         console.log(JSON.stringify(json));
         console.log(currentTemp);
     });
@@ -70,5 +70,6 @@ getLocation();
 $(document).ready(function() {
     $("#change-tempF").attr("disabled", true);
     $("#change-tempC").attr("disabled", true);
+    $("#current-weather").text("Fetching your weather data...");
 });
 console.log(weatherLink);
