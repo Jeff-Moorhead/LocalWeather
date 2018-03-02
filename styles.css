@@ -1,0 +1,13 @@
+.title {
+    text-align: center;
+}
+
+.weather {
+    text-align: center;
+    margin: auto;
+    display: block;
+}
+
+#location {
+    text-align: center;
+}
