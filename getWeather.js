@@ -1,12 +1,14 @@
 var x = document.getElementById("location");
 var lat = 0;
 var long = 0;
+var area = "";
 var weatherData = document.getElementById("current-weather");
 var temperatureData = document.getElementById("current-temperature");
 var celsiusButton = document.getElementById("change-tempC");
 var fahrenButton = document.getElementById("change-tempF");
+var currentWeather = "";
 var currentTemp = 0;    
-var weatherLink = "";
+var dataLink = "";
 
 console.log(x.innerHTML);
 function getLocation() {
@@ -15,7 +17,7 @@ function getLocation() {
         navigator.geolocation.getCurrentPosition(showLocation);
     }
     else {
-        x.innerHTML = "Location unavailable";
+        $("#current-weather").text("Location unavailable.");
     }
 }
 
@@ -25,24 +27,26 @@ function showLocation(position) {
     long = position.coords.longitude;
     console.log(lat);
     console.log(long);
-    x.innerHTML = "Your location:<br>Latitude: " + position.coords.latitude +
-        "<br>Longitude: " + position.coords.longitude;
-    getWeather();
+    getData();
     $("#change-tempF").attr("disabled", false);
 }
 
-function getWeather() {
+function getData() {
     console.log("Executing getWeather()...");
-    weatherLink = "https://fcc-weather-api.glitch.me/api/current?lat="
+    dataLink = "https://fcc-weather-api.glitch.me/api/current?lat="
         + lat + "&lon=" + long;
-    console.log(weatherLink);
-    $.getJSON(weatherLink, function (json) {
+    console.log(dataLink);
+    $.getJSON(dataLink, function (json) {
         currentWeather = json.weather[0].main;
         currentTemp = Math.round(json.main.temp);
+        area = json.name + ", " + json.sys.country;
+        x.innerHTML = area;
         weatherData.innerHTML = "Current weather: " + currentWeather + "<br>";
         temperatureData.innerHTML = "Current temperature: " +  currentTemp + "&degC";
         console.log(JSON.stringify(json));
+        console.log(currentWeather);
         console.log(currentTemp);
+        console.log(area);
     });
 }
 
@@ -62,14 +66,13 @@ function changeToC() {
     celsiusButton.getAttribute("disabled");
     fahrenButton.getAttribute("diabled");
     currentTemp = Math.round((currentTemp -32) * 5/9);
-    temperatureData.innerHTML = "Current temperature: " +
-    currentTemp + "&degC";
+    temperatureData.innerHTML = "Current temperature: " + currentTemp + "&degC";
 }
 
-getLocation();
 $(document).ready(function() {
     $("#change-tempF").attr("disabled", true);
     $("#change-tempC").attr("disabled", true);
     $("#current-weather").text("Fetching your weather data...");
+    getLocation();
 });
-console.log(weatherLink);
+console.log(dataLink);
