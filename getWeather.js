@@ -37,12 +37,13 @@ function getData() {
         + lat + "&lon=" + long;
     console.log(dataLink);
     $.getJSON(dataLink, function (json) {
-        currentWeather = json.weather[0].main;
+        currentWeather = toTitleCase(json.weather[0].description);
         currentTemp = Math.round(json.main.temp);
         area = json.name + ", " + json.sys.country;
         x.innerHTML = area;
         weatherData.innerHTML = "Current weather: " + currentWeather + "<br>";
         temperatureData.innerHTML = "Current temperature: " +  currentTemp + "&degC";
+        currentWeather = currentWeather.toLowerCase();
         console.log(JSON.stringify(json));
         console.log(currentWeather);
         console.log(currentTemp);
@@ -69,10 +70,17 @@ function changeToC() {
     temperatureData.innerHTML = "Current temperature: " + currentTemp + "&degC";
 }
 
+function toTitleCase(phrase) {
+    return phrase.split(' ').map(function(word) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+    }).join(' ');
+};
+
 $(document).ready(function() {
     $("#change-tempF").attr("disabled", true);
     $("#change-tempC").attr("disabled", true);
     $("#current-weather").text("Fetching your weather data...");
+    $("body").attr("hidden", false);
     getLocation();
 });
 console.log(dataLink);

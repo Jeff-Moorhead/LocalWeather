@@ -5,24 +5,28 @@
         <title>Get Your Local Weather</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
     </head>
 
-    <body>
+    <body class="container-fluid" hidden>
         <h1 class="title">Local Weather</h1>
         <br>
         <div class="data" id="location">
-            
+
         </div>
         <div class="data" id="current-weather">
-            
+
         </div>
         <div class="data" id="current-temperature">
- 
+        
         </div>
         <div class="weather-buttons">
-        <button onclick="changeToF()" id="change-tempF"disabled>&degF</button>
-        <button onclick="changeToC()" id="change-tempC" disabled>&degC</button>
+            <button class="btn btn-default" onclick="changeToF()" id="change-tempF" disabled>&degF</button>
+            <button class="btn btn-default" onclick="changeToC()" id="change-tempC" disabled>&degC</button>
         </div>
+        <i class="fas fa-cloud"></i>
+        <i class="far fa-sun"></i>
     </body>
 
     <!-- jQuery -->
