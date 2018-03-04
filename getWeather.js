@@ -41,9 +41,9 @@ function getData() {
         currentTemp = Math.round(json.main.temp);
         area = json.name + ", " + json.sys.country;
         x.innerHTML = area;
-        weatherData.innerHTML = "Current weather: " + currentWeather + "<br>";
-        temperatureData.innerHTML = "Current temperature: " +  currentTemp + "&degC";
-        currentWeather = currentWeather.toLowerCase();
+        weatherData.innerHTML = "Current weather:&nbsp;&nbsp;" + currentWeather + 
+        " " + icons[json.weather[0].main] + "<br>";
+        temperatureData.innerHTML = "Current temperature:&nbsp;&nbsp;" +  currentTemp + "&degC";
         console.log(JSON.stringify(json));
         console.log(currentWeather);
         console.log(currentTemp);
@@ -57,15 +57,11 @@ function changeToF() {
     currentTemp = Math.round((currentTemp * 9/5) + 32);
     temperatureData.innerHTML = "Current temperature: " + 
     currentTemp + "&degF";
-    disabledC = "false";
-    disabledF = "true";
 }
 
 function changeToC() {
     document.getElementById("change-tempC").setAttribute("disabled", true);
     document.getElementById("change-tempF").removeAttribute("disabled");
-    celsiusButton.getAttribute("disabled");
-    fahrenButton.getAttribute("diabled");
     currentTemp = Math.round((currentTemp -32) * 5/9);
     temperatureData.innerHTML = "Current temperature: " + currentTemp + "&degC";
 }
@@ -84,3 +80,15 @@ $(document).ready(function() {
     getLocation();
 });
 console.log(dataLink);
+
+var icons = {
+    "Clear": "<i class=\"wi wi-day-sunny\"></i>",
+    "Clouds": "<i class=\"wi wi-cloudy\"></i>",
+    "Rain": "<i class=\"wi wi-rain\"></i>",
+    "Drizzle": "<i class=\"wi wi-showers\"></i>",
+    "Thunderstorm": "<i class=\"wi wi-storm-showers\"></i>",
+    "Snow": "<i class=\"wi wi-snow\"></i>",
+    "Extreme": "<i class=\"wi wi-tornado\"></i>",
+    "Additional": "<i class=\"wi wi-strong-wind\"></i>",
+    "Atmosphere": "<i class=\"wi wi-fog\"></i>"
+}

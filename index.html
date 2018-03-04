@@ -6,7 +6,9 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="styles.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+        <link rel="stylesheet" href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css">
+        <link rel="stylesheet" href="weather-icons-master/css/weather-icons.css">
     </head>
 
     <body class="container-fluid" hidden>
@@ -19,14 +21,13 @@
 
         </div>
         <div class="data" id="current-temperature">
-        
+
         </div>
         <div class="weather-buttons">
             <button class="btn btn-default" onclick="changeToF()" id="change-tempF" disabled>&degF</button>
             <button class="btn btn-default" onclick="changeToC()" id="change-tempC" disabled>&degC</button>
         </div>
-        <i class="fas fa-cloud"></i>
-        <i class="far fa-sun"></i>
+        
     </body>
 
     <!-- jQuery -->
@@ -34,5 +35,6 @@
 
     <!-- Local JS -->
     <script src="getWeather.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
     </html>

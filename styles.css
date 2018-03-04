@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Karla');
 
+label {
+    color: #dddddd;
+}
 .container-fluid {
     background-color: #222244 !important;
     color: #dddddd !important;
@@ -28,7 +31,7 @@
     transition-duration: 0.4s;
     background-color: #eeeeee;
     color: black;
-    border: 2px solid rgb(19, 140, 113);
+    border: none;
 }
 
 .title {
